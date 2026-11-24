@@ -412,21 +412,18 @@ textarea.g-in{resize:vertical;font-size:15px}
 
 <footer class="end gut"><div class="ig">@24BLVDBANGKOK</div><p class="lab">Prices are subject to a 10% service charge<br>and applicable taxes //</p></footer>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
 <script>
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let lenis = null;
-  if (!reduce && window.Lenis) {
-    lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 3), smoothWheel: true });
-    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
-  }
+  
   const topH = () => document.querySelector('.top').offsetHeight + (document.querySelector('.catnav')?.offsetHeight || 0);
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', ev => {
     const t = document.querySelector(a.getAttribute('href')); if (!t) return;
     ev.preventDefault();
     if (lenis) lenis.scrollTo(t, { offset: -topH() });
-    else window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - topH(), behavior: reduce ? 'auto' : 'smooth' });
+    else window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - topH(), behavior: 'auto' });
   }));
   const pt = document.getElementById('playToggle'), pb = document.getElementById('playBody');
   function setPlay(open){
