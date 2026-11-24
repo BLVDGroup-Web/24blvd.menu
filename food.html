@@ -342,6 +342,11 @@ body::before{background:#09090B!important}
 .top .sw a:hover,.top .sw a:focus-visible,.top .sw a.on{color:#F6F0E6!important;border-color:#C63D2F!important}
 .top .sw a:hover i,.top .sw a:focus-visible i,.top .sw a.on i{color:#F6F0E6}
 .top .sw a:focus-visible{outline-color:#F3E8DE}
+
+/* restaurant cards: 3 per row (phones keep 2) */
+.tabs{grid-template-columns:repeat(3,minmax(0,1fr))!important;--u:clamp(.6,(100vw - 72px)/700px,1.75)}
+.tabs .ph{aspect-ratio:16/10}
+@media (max-width:760px){.tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important;--u:clamp(.55,(100vw - 32px)/390px,1.1)}.tabs .ph{aspect-ratio:1/1}}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <div class="top"><div class="bar"><a class="gohome" href="./" aria-label="Back to the main menu page"><span aria-hidden="true">←</span></a><nav class="sw" aria-label="Menu"><a href="drinks.html">Drinks<i>/</i></a><a class="on" aria-current="page" href="food.html">Food<i>/</i></a></nav></div></div>
