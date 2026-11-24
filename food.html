@@ -286,9 +286,18 @@ img.tl.tl-sampao{height:clamp(84px,7.6vw,126px)!important;font-size:0!important;
 .phd .clogo .tl-beso{height:calc(var(--s)*72px)!important}.phd .clogo .tl-lulu{height:calc(var(--s)*79px)!important}
 .phd .clogo img.tl-sampao{height:calc(var(--s)*82.6px)!important}.phd .clogo .tl-mama{height:calc(var(--s)*92px)!important}
 .phd .clogo .tl-hone .hm{height:calc(var(--s)*49px)!important}.phd .clogo .tl-hone .hw{height:calc(var(--s)*13px)!important}.phd .clogo .tl.tl-hone{gap:calc(var(--s)*10px)!important}
+
+/* header matched to www.24blvd.com: 73px bar (65px on small phones) and its 24 BLVD logo */
+:root{--hb:73px}@media (max-width:420px){:root{--hb:65px}}
+.blogo{display:block;flex:none;height:52px;aspect-ratio:825/396;background:#141414;-webkit-mask:url(ic/blvd-logo.png) center/contain no-repeat;mask:url(ic/blvd-logo.png) center/contain no-repeat}
+@media (max-width:420px){.blogo{height:42px}}
+.catnav{top:calc(env(safe-area-inset-top,0px) + var(--hb))!important}
+@media (max-width:380px){.sw a{font-size:15px!important;padding:5px 7px 4px!important;gap:3px}}
+.top .bar{height:calc(var(--hb) - 1.5px);padding-block:0!important}
+.sn{top:calc(env(safe-area-inset-top,0px) + var(--hb) + 41px)!important}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
-<div class="top"><div class="bar"><img src="ic/24blvd.png" alt="24 BLVD"><nav class="sw" aria-label="Menu"><a href="index.html">Drinks<i>/</i></a><a class="on" aria-current="page" href="food.html">Food<i>/</i></a></nav></div></div>
+<div class="top"><div class="bar"><span class="blogo" role="img" aria-label="24 BLVD"></span><nav class="sw" aria-label="Menu"><a href="index.html">Drinks<i>/</i></a><a class="on" aria-current="page" href="food.html">Food<i>/</i></a></nav></div></div>
 <header class="wrap hero0"><div class="hmeta"><span>[ Sukhumvit 24 ]</span><a class="ig-link" href="https://www.instagram.com/24blvdbangkok/" target="_blank" rel="noopener" aria-label="24 BLVD on Instagram">[ @24blvdbangkok ]</a></div><h1>Food/</h1>
 </header>
 <nav class="catnav" aria-label="Cuisines"><a href="#restaurants" data-k="">[ ALL ]</a><a href="#amore" data-k="amore">[ Italian ]</a><a href="#besobeso" data-k="beso">[ Spanish + Mexican ]</a><a href="#lulu" data-k="lulu">[ Korean ]</a><a href="#hone" data-k="hone">[ Japanese ]</a><a href="#notinbangkok" data-k="thai">[ Thai ]</a><a href="#sampao" data-k="sampao">[ Chinese - Thai ]</a><a href="#mamadonna" data-k="mama">[ Pizza ]</a></nav>
@@ -311,8 +320,8 @@ const cn=[...document.querySelectorAll('.catnav a')];cn.forEach(a=>a.addEventLis
 const home=()=>{if(inside){inside=false;history.back()}else location.hash='restaurants'};
 
 addEventListener('hashchange',()=>{if(!cards.some(c=>c.dataset.k===unslug(location.hash.slice(1))))inside=false;route()});
-document.querySelectorAll('.sn a').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const el=document.getElementById(a.dataset.go);go(el.getBoundingClientRect().top+scrollY-160)}));
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const id=en.target.id;const nav=en.target.closest('.panel').querySelector('.sn');nav.querySelectorAll('a').forEach(a=>{const on=a.dataset.go===id;a.classList.toggle('on',on);if(on)nav.scrollTo({left:Math.max(0,a.offsetLeft-parseFloat(getComputedStyle(nav).paddingLeft)),behavior:'smooth'})})}}),{rootMargin:'-172px 0px -60% 0px'});
+document.querySelectorAll('.sn a').forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const el=document.getElementById(a.dataset.go);go(el.getBoundingClientRect().top+scrollY-(document.querySelector('.top').offsetHeight+105))}));
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const id=en.target.id;const nav=en.target.closest('.panel').querySelector('.sn');nav.querySelectorAll('a').forEach(a=>{const on=a.dataset.go===id;a.classList.toggle('on',on);if(on)nav.scrollTo({left:Math.max(0,a.offsetLeft-parseFloat(getComputedStyle(nav).paddingLeft)),behavior:'smooth'})})}}),{rootMargin:'-190px 0px -60% 0px'});
 document.querySelectorAll('.sec').forEach(s=>io.observe(s));
 route();
 </script>
